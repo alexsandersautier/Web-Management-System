@@ -1,0 +1,42 @@
+{% extends 'web_management/base.html' %}
+{% block content%}
+<h1 style="text-align: center;">Movie Theater 🎥</h1>
+<div class="container">
+
+  <table class="table table-bordered">
+      <thead style="background-color: #CCCCCC;">
+        <tr>
+          <th scope="col" class="text-center">🎦</th>
+          <th scope="col" class="text-center">Movie</th>
+          <th scope="col" class="text-center">Finished</th>
+          <th scope="col" class="text-center">Review</th>
+          <th scope="col" class="text-center">✍️</th>
+          <th scope="col" class="text-center">❌</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for date in data%}
+        <tr>
+          <th scope="row" class="text-center">{{date.id}}</th>
+          <td>{{date.movie}}</td>
+          {% if date.finished == True%}
+          <td class="text-center">✔️</td>
+          {% else %}
+          <td class="text-center">⌛</td>  
+          {% endif %}
+          <td class="text-center"><button class="btn btn-info" ><a style="color: white;" href="{% url 'movie_registed' date.id %}">Details</a></button></td>
+          <td class="text-center"><button class="btn btn-secondary"><a style="color: white;" href="{% url 'edit_movie' date.id %}">Edit</a></button></td>
+          <td class="text-center"><button class="btn btn-danger"><a style="color: white;" href="{% url 'delete_movie' date.id %}">Delete</a></button></td>
+        </tr>
+        {% endfor %}  
+      </tbody>
+    </table>
+    <td><button class="btn btn-success"><a style="color: white;" href="{% url 'new_movie' %}" class="btn-lg">New Movie</a></button></td>
+</div>
+<footer class="text-center text-lg-start fixed-bottom">
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    ©Sautier Alexsander
+    <a class="text-dark" href="https://alexsanderesramos.wixsite.com/alexsandersautier">click me</a>
+  </div>
+</footer>
+{% endblock %}
