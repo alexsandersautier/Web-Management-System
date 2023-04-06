@@ -1,0 +1,33 @@
+{% extends 'web_management/base.html' %}
+{% block content%}
+<h1 style="text-align: center;">Movie Theater 🎥</h1>
+<div class="container">
+
+  <table class="table table-bordered">
+      <thead style="background-color: #CCCCCC;">
+        <tr>
+          <th scope="col" class="text-center">🎦</th>
+          <th scope="col" class="text-center">Movie</th>
+          <th scope="col" class="text-center">Finished</th>
+          <th scope="col" class="text-center">Review</th>
+          <th scope="col" class="text-center">✍️</th>
+          <th scope="col" class="text-center">❌</th>          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{data.id}}</th>
+          <td>{{data.movie}}</td>
+          {% if data.finished == True%}
+          <td class="text-center">✔️</td>
+          {% else %}
+          <td class="text-center">⌛</td>  
+          {% endif %}
+          <td>{{data.review}}</td>
+          <td class="text-center"><button class="btn btn-secondary"><a style="color: white;" href="{% url 'edit_movie' data.id%}">Edit</a></button></td>
+          <td class="text-center"><button class="btn btn-danger"><a style="color: white;" href="{% url 'new_book' %}">Delete</a></button></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+{% endblock %}
